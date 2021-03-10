@@ -28,7 +28,7 @@ public class EasterEgg {
 
     private static void drawSingleEggPoint(final EggMetrics eggMetrics, int yCoordinate, int xCoordinate) {
         if (isXYPointInsideEgg(eggMetrics, xCoordinate, yCoordinate)) {
-            System.out.print(eggMetrics.getColor());
+            robinsPicasso(xCoordinate, yCoordinate);
         } else {
             System.out.print(eggMetrics.getBackgroundColor());
         }
@@ -36,7 +36,7 @@ public class EasterEgg {
 
     private static boolean isXYPointInsideEgg(final EggMetrics eggMetrics, final int xCoordinate, final int yCoordinate) {
         return (((calculateSquareOfDistanceFromCenterXPoint(eggMetrics.getCenterXPoint(), xCoordinate) * EGG_EQUATION_SCALE_FACTOR) / (calculateSquareOfRadius(eggMetrics.getHorizontalRadius()) * factorToChangeToEggShape(yCoordinate))) +
-            ((calculateSquareOfDistanceFromCenterYPoint(eggMetrics.getCenterYPoint(), yCoordinate) * EGG_EQUATION_SCALE_FACTOR) / calculateSquareOfRadius(eggMetrics.getVerticalRadius()))) < EGG_EQUATION_SCALE_FACTOR;
+                ((calculateSquareOfDistanceFromCenterYPoint(eggMetrics.getCenterYPoint(), yCoordinate) * EGG_EQUATION_SCALE_FACTOR) / calculateSquareOfRadius(eggMetrics.getVerticalRadius()))) < EGG_EQUATION_SCALE_FACTOR;
     }
 
     private static int calculateSquareOfDistanceFromCenterXPoint(final int centerXPoint, final int xCoordinate) {
@@ -58,4 +58,23 @@ public class EasterEgg {
     private static int calculateSquareOfRadius(final int radius) {
         return radius * radius;
     }
+
+    private static void robinsPicasso(int xCoordinate, int yCoordinate) {
+        boolean xCondition = xCoordinate % 5 > 1;
+
+        if (yCoordinate % 4 == 1) {
+            print(xCondition ? Colors.PURPLE : Colors.RED);
+        } else if (yCoordinate % 2 == 1) {
+            print(xCondition ? Colors.PURPLE : Colors.RED);
+        } else if (yCoordinate % 4 > 1) {
+            print(xCondition ? Colors.RED : Colors.BLACK);
+        } else {
+            print(xCondition ? Colors.BLUE : Colors.CYAN);
+        }
+    }
+
+    private static void print(Colors color) {
+        System.out.print(color.getColor());
+    }
+
 }
